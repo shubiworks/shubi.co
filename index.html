@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en" class="intro-active">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#e9e6df">
+<meta name="description" content="Subhan — independent digital creative working across design, development, and digital experiences.">
+<title>Subhan® — Digital Creative</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+:root{--paper:#e9e6df;--ink:#171715;--muted:#77766f;--line:rgba(23,23,21,.2);--accent:#f04b2f}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'Space Grotesk',Arial,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+.noise{position:fixed;inset:0;pointer-events:none;z-index:10;opacity:.055;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.42'/%3E%3C/svg%3E")}
+.topbar{height:78px;padding:0 5vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20;background:rgba(233,230,223,.88);backdrop-filter:blur(18px)}
+.logo{font-size:21px;font-weight:700;letter-spacing:-1.5px}.logo span{color:var(--accent)}
+.mono{font-family:'DM Mono',monospace;text-transform:uppercase;font-size:10px;letter-spacing:.08em}
+.status{display:flex;align-items:center;gap:9px;color:#55544e}.dot{width:7px;height:7px;background:#5b9a66;border-radius:50%;box-shadow:0 0 0 4px #5b9a661c}
+.nav-right{display:flex;align-items:center;gap:24px}.navlinks{display:flex;gap:20px}.navlinks a{font-family:'DM Mono',monospace;text-transform:uppercase;font-size:10px;letter-spacing:.06em;position:relative}.navlinks a:after{content:'';position:absolute;left:0;bottom:-5px;width:0;height:1px;background:var(--accent);transition:width .25s}.navlinks a:hover:after{width:100%}.menu-btn{border:1px solid var(--ink);border-radius:30px;padding:10px 17px;background:transparent;cursor:pointer;transition:.25s}.menu-btn:hover{background:var(--ink);color:var(--paper)}
+.hero{min-height:calc(100svh - 78px);padding:7vh 5vw 4vh;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.hero-top{display:flex;justify-content:space-between;gap:24px;position:relative;z-index:2}
+.kicker{max-width:240px;line-height:1.6}.hero-note{text-align:right;max-width:210px;line-height:1.6}
+.hero-title{font-size:clamp(68px,14.5vw,210px);line-height:.78;letter-spacing:-.105em;font-weight:700;margin:8vh 0 7vh;position:relative;z-index:2}
+.hero-title .line{display:block;white-space:nowrap}.hero-title .outline{color:transparent;-webkit-text-stroke:1.5px var(--ink);padding-left:10vw}
+.hero-title .asterisk{color:var(--accent);display:inline-block;font-size:.48em;vertical-align:top;letter-spacing:0;transform:translateY(-.12em);animation:spin 18s linear infinite}
+.hero-bottom{display:flex;align-items:end;justify-content:space-between;gap:20px;position:relative;z-index:2}
+.intro{font-size:clamp(16px,2vw,23px);line-height:1.35;max-width:490px;letter-spacing:-.04em}
+.scroll{display:flex;gap:12px;align-items:center}.scroll-mark{width:34px;height:34px;border:1px solid var(--ink);border-radius:50%;display:grid;place-items:center;font-size:18px}
+.orbit{position:absolute;width:clamp(220px,34vw,470px);aspect-ratio:1;border:1px solid #17171525;border-radius:50%;right:11%;top:27%;pointer-events:none;animation:float 8s ease-in-out infinite;transform-style:preserve-3d}.orbit .ring3d{position:absolute;inset:8% -8%;border:2px solid #f04b2f88;border-radius:50%;transform:rotateX(68deg) rotateZ(-24deg);box-shadow:0 12px 0 -5px #f04b2f33,0 24px 0 -10px #f04b2f22}.orbit .ring3d.two{inset:20% -17%;border-color:#17171540;transform:rotateX(68deg) rotateZ(35deg)}.orbital-ball{position:absolute;right:15%;top:22%;width:clamp(70px,10vw,130px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 30% 25%,#fff3d9 0,#f58a68 15%,#f04b2f 42%,#9d2115 72%,#4b160f 100%);box-shadow:inset -12px -15px 24px #30100b66,0 25px 35px #17171530;animation:ballFloat 6s ease-in-out infinite;transform-style:preserve-3d}.orbit .orbit-core{z-index:2}
+.orbit:before,.orbit:after{content:"";position:absolute;border:1px solid #17171520;border-radius:50%;inset:12%}
+.orbit:after{inset:25%}.orbit-core{position:absolute;top:16%;left:20%;width:11px;height:11px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 8px #f04b2f16}
+.section{padding:110px 5vw;border-top:1px solid var(--line)}
+.section-head{display:flex;justify-content:space-between;align-items:start;gap:25px;margin-bottom:55px}
+.section-label{font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.08em}
+.section h2{font-size:clamp(42px,7vw,100px);letter-spacing:-.08em;line-height:.9;margin:0;max-width:780px}
+.work-list{border-top:1px solid var(--line)}
+.work-item{display:grid;grid-template-columns:70px 1fr auto;gap:22px;align-items:center;padding:27px 0;border-bottom:1px solid var(--line);transition:padding .3s;position:relative}
+.work-item:hover{padding-left:12px;padding-right:12px}
+.work-num{font-family:'DM Mono',monospace;color:var(--muted);font-size:11px}
+.work-name{font-size:clamp(27px,5vw,62px);letter-spacing:-.065em;font-weight:600}
+.work-type{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;color:var(--muted);text-align:right;line-height:1.7}
+.work-item .arrow{color:var(--accent);font-size:25px;margin-left:8px;display:inline-block;transition:transform .25s}
+.work-item:hover .arrow{transform:translate(5px,-5px)}
+.note{font-size:12px;color:var(--muted);margin-top:25px;line-height:1.7}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:7vw;align-items:start}
+.about-copy{font-size:clamp(21px,3vw,36px);line-height:1.22;letter-spacing:-.05em;max-width:700px}
+.about-copy em{font-style:normal;color:var(--accent)}
+.about-side{padding-top:8px}.about-side p{font-size:14px;line-height:1.8;max-width:420px;color:#56554f}
+.service-list{margin-top:32px;border-top:1px solid var(--line)}
+.service{padding:13px 0;display:flex;justify-content:space-between;border-bottom:1px solid var(--line);font-size:13px}.service span:last-child{font-family:'DM Mono',monospace;color:var(--muted);font-size:10px}
+.marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:23px 0;white-space:nowrap}
+.marquee-track{display:inline-flex;gap:28px;animation:marquee 25s linear infinite;font-size:clamp(28px,5vw,58px);font-weight:600;letter-spacing:-.06em}
+.marquee-track span{color:var(--accent)}
+.contact{background:var(--ink);color:var(--paper);padding:100px 5vw 35px}
+.contact-top{display:flex;justify-content:space-between;gap:20px;align-items:start}
+.contact h2{font-size:clamp(55px,11vw,150px);letter-spacing:-.1em;line-height:.82;margin:35px 0 55px;max-width:1000px}
+.contact h2 span{color:var(--accent)}
+.contact-links{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:85px}
+.contact-link{border:1px solid #e9e6df60;padding:13px 17px;border-radius:30px;font-size:13px;transition:.25s}
+.contact-link:hover{background:var(--paper);color:var(--ink)}
+.footer{border-top:1px solid #e9e6df40;padding-top:18px;display:flex;justify-content:space-between;gap:15px;color:#aaa9a1}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}.reveal.visible{opacity:1;transform:translateY(0)}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes float{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-18px) rotate(5deg)}}@keyframes ballFloat{0%,100%{transform:translate3d(0,0,35px) rotate(-8deg)}50%{transform:translate3d(-12px,-22px,70px) rotate(12deg)}}@keyframes marquee{to{transform:translateX(-50%)}}
+@media(max-width:700px){.topbar{height:66px;padding:0 5vw}.status{display:none}.nav-right{gap:12px}.navlinks{gap:11px}.navlinks a{font-size:9px}.menu-btn{padding:9px 11px;font-size:9px}.hero{min-height:calc(90svh - 66px);padding:6vh 6vw 28px}.hero-top{font-size:9px}.hero-note{max-width:135px}.hero-title{font-size:clamp(62px,15vw,105px);margin:10vh 0}.hero-title .outline{padding-left:3vw}.orbit{right:-14%;top:32%;width:65vw;opacity:.65}.hero-bottom{align-items:start;flex-direction:column}.scroll{margin-top:12px}.section{padding:75px 6vw}.section-head{margin-bottom:35px}.work-item{grid-template-columns:28px 1fr;gap:10px;padding:22px 0}.work-type{grid-column:2;text-align:left;margin-top:-5px}.work-name{font-size:clamp(27px,8vw,45px)}.about-grid{grid-template-columns:1fr;gap:30px}.contact{padding:75px 6vw 25px}.contact h2{margin:55px 0 40px}.contact-links{margin-bottom:55px}.footer{font-size:9px;flex-wrap:wrap}.section h2{font-size:clamp(42px,12vw,75px)}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+
+/* Added immersive intro; all selectors are scoped to #intro3d. */
+#intro3d{position:fixed;inset:0;z-index:99999;display:grid;place-items:center;overflow:hidden;background:var(--paper,#e9e6df);color:var(--ink,#171715);isolation:isolate;opacity:1;visibility:visible;transition:opacity 1s cubic-bezier(.2,.7,.1,1),visibility 1s}
+#intro3d.intro3d-leaving{opacity:0;visibility:hidden;pointer-events:none}
+#intro3d .intro3d-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:-2}
+#intro3d:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 50% 48%,transparent 15%,rgba(23,23,21,.055) 100%);border:1px solid rgba(23,23,21,.09)}
+#intro3d .intro3d-grid{position:absolute;inset:-25%;z-index:-1;pointer-events:none;opacity:.18;background-image:linear-gradient(rgba(23,23,21,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(23,23,21,.12) 1px,transparent 1px);background-size:68px 68px;transform:perspective(500px) rotateX(62deg) translateY(22%);mask-image:linear-gradient(transparent,black 25%,black 70%,transparent)}
+#intro3d .intro3d-top,#intro3d .intro3d-bottom{position:absolute;left:5vw;right:5vw;display:flex;justify-content:space-between;align-items:center;gap:18px;font:10px 'DM Mono',monospace;letter-spacing:.1em;text-transform:uppercase}
+#intro3d .intro3d-top{top:34px}#intro3d .intro3d-bottom{bottom:30px;color:var(--muted,#77766f)}
+#intro3d .intro3d-live{display:flex;align-items:center;gap:9px}
+#intro3d .intro3d-live i{width:6px;height:6px;border-radius:50%;background:#5b9a66;box-shadow:0 0 0 5px #5b9a661c}
+#intro3d .intro3d-center{position:relative;z-index:2;width:min(90vw,1000px);text-align:center;transform:translateY(-1vh);pointer-events:none}
+#intro3d .intro3d-eyebrow{font:10px 'DM Mono',monospace;letter-spacing:.22em;text-transform:uppercase;color:var(--muted,#77766f);margin-bottom:25px;animation:intro3d-rise 1s .1s both}
+#intro3d .intro3d-brand{font-size:clamp(62px,15vw,170px);font-weight:700;letter-spacing:-.105em;line-height:.83;margin:0 0 22px;display:inline-block;position:relative;transform-style:preserve-3d;perspective:700px;text-shadow:0 1px 0 #fff8,0 2px 0 #1717150b,0 18px 35px #17171515;animation:intro3d-brand-in 1.35s cubic-bezier(.16,.8,.2,1) both}
+#intro3d .intro3d-brand:after{content:"";position:absolute;left:0;right:-.07em;bottom:-.12em;height:1px;background:linear-gradient(90deg,transparent,var(--accent,#f04b2f),transparent);opacity:.8}
+#intro3d .intro3d-brand span{color:var(--accent,#f04b2f);font-size:.35em;vertical-align:top;letter-spacing:0;margin-left:.1em}
+#intro3d .intro3d-subtitle{font-size:clamp(13px,2vw,18px);letter-spacing:-.035em;line-height:1.45;margin:0 auto 35px;max-width:360px;animation:intro3d-rise 1s .3s both}
+#intro3d .intro3d-enter{pointer-events:auto;display:inline-flex;align-items:center;justify-content:center;gap:18px;min-width:164px;padding:15px 22px;border:1px solid var(--ink,#171715);border-radius:40px;background:rgba(233,230,223,.7);color:var(--ink,#171715);font:10px 'DM Mono',monospace;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;box-shadow:0 0 0 0 #f04b2f20;transition:background .3s,color .3s,transform .3s,box-shadow .3s;animation:intro3d-rise 1s .45s both,intro3d-pulse 3s 1.5s infinite}
+#intro3d .intro3d-enter:after{content:"↗";font:17px 'Space Grotesk',sans-serif;transition:transform .3s}
+#intro3d .intro3d-enter:hover,#intro3d .intro3d-enter:focus-visible{background:var(--ink,#171715);color:var(--paper,#e9e6df);transform:translateY(-3px);box-shadow:0 12px 35px #17171520;outline:none}
+#intro3d .intro3d-enter:hover:after{transform:translate(3px,-3px)}
+#intro3d .intro3d-index{color:var(--accent,#f04b2f)}
+#intro3d .intro3d-hint{opacity:.8}
+@keyframes intro3d-rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes intro3d-brand-in{from{opacity:0;transform:perspective(700px) rotateX(28deg) translateY(35px);filter:blur(8px)}to{opacity:1;transform:perspective(700px) rotateX(0) translateY(0);filter:blur(0)}}
+@keyframes intro3d-pulse{0%,100%{box-shadow:0 0 0 0 #f04b2f00}50%{box-shadow:0 0 0 7px #f04b2f0b}}
+@media(max-width:600px){#intro3d .intro3d-top,#intro3d .intro3d-bottom{left:6vw;right:6vw;font-size:8px;letter-spacing:.06em}#intro3d .intro3d-top{top:22px}#intro3d .intro3d-bottom{bottom:20px}#intro3d .intro3d-hint{display:none}#intro3d .intro3d-center{width:88vw}#intro3d .intro3d-brand{font-size:clamp(58px,16vw,100px)}#intro3d .intro3d-subtitle{max-width:280px}}
+@media(prefers-reduced-motion:reduce){#intro3d,#intro3d *{animation:none!important;transition:none!important}#intro3d .intro3d-brand{opacity:1;filter:none}}
+
+
+/* Editorial 3D typography inspired by Van Holtz's bold, perspective-led type; colors stay native to Subhan's palette. */
+#intro3d .intro3d-typefield{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;perspective:1000px;opacity:.9}
+#intro3d .intro3d-type-stack{position:absolute;left:50%;top:50%;width:min(94vw,1180px);height:min(68vh,620px);transform:translate(-50%,-50%) rotateX(3deg);transform-style:preserve-3d;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:0}
+#intro3d .intro3d-type-word{display:block;font-family:'Space Grotesk',Arial,sans-serif;font-weight:700;font-size:clamp(58px,12vw,160px);line-height:.76;letter-spacing:-.105em;white-space:nowrap;color:transparent;-webkit-text-stroke:1px rgba(23,23,21,.16);text-shadow:0 14px 22px rgba(23,23,21,.035);transform-style:preserve-3d;animation:intro3d-type-drift 9s ease-in-out infinite}
+#intro3d .intro3d-type-word.word-one{transform:translate3d(-7%,0,-100px) rotateY(18deg) rotateX(8deg);animation-delay:-1s}
+#intro3d .intro3d-type-word.word-two{transform:translate3d(8%,0,-65px) rotateY(-15deg) rotateX(-5deg);-webkit-text-stroke-color:rgba(240,75,47,.23);animation-delay:-3s}
+#intro3d .intro3d-type-word.word-three{transform:translate3d(-5%,0,-30px) rotateY(12deg) rotateX(5deg);animation-delay:-5s}
+#intro3d .intro3d-type-word.word-four{transform:translate3d(6%,0,0) rotateY(-10deg) rotateX(-4deg);-webkit-text-stroke-color:rgba(23,23,21,.2);animation-delay:-7s}
+#intro3d .intro3d-type-lines{position:absolute;top:50%;width:clamp(70px,14vw,220px);display:flex;flex-direction:column;gap:17px;opacity:.6;transform:translateY(-50%)}
+#intro3d .intro3d-lines-left{left:5vw}#intro3d .intro3d-lines-right{right:5vw;align-items:flex-end}
+#intro3d .intro3d-type-lines i{display:block;height:1px;width:100%;background:linear-gradient(90deg,transparent,rgba(23,23,21,.45));transform-origin:left center;animation:intro3d-line-pulse 5s ease-in-out infinite}
+#intro3d .intro3d-lines-right i{background:linear-gradient(90deg,rgba(240,75,47,.6),transparent);transform-origin:right center}
+#intro3d .intro3d-type-lines i:nth-child(2){width:76%;animation-delay:-1s}#intro3d .intro3d-type-lines i:nth-child(3){width:91%;animation-delay:-2s}#intro3d .intro3d-type-lines i:nth-child(4){width:58%;animation-delay:-3s}
+#intro3d .intro3d-type-caption{position:absolute;top:calc(50% + min(34vh,310px));font:9px 'DM Mono',monospace;letter-spacing:.16em;color:rgba(23,23,21,.43)}
+#intro3d .intro3d-caption-left{left:5vw}#intro3d .intro3d-caption-right{right:5vw;text-align:right}
+#intro3d .intro3d-center{z-index:2}
+@keyframes intro3d-type-drift{0%,100%{filter:blur(.2px);letter-spacing:-.105em}50%{filter:blur(.65px);letter-spacing:-.09em}}
+@keyframes intro3d-line-pulse{0%,100%{opacity:.35;transform:scaleX(.78)}50%{opacity:.8;transform:scaleX(1)}}
+@media(max-width:600px){#intro3d .intro3d-type-stack{width:110vw;height:52vh;top:48%}#intro3d .intro3d-type-word{font-size:clamp(55px,17vw,94px);-webkit-text-stroke-width:.8px}#intro3d .intro3d-type-lines{width:12vw;gap:12px;opacity:.5}#intro3d .intro3d-lines-left{left:3vw}#intro3d .intro3d-lines-right{right:3vw}#intro3d .intro3d-type-caption{font-size:7px;letter-spacing:.08em;top:auto;bottom:15vh}#intro3d .intro3d-caption-left{left:6vw}#intro3d .intro3d-caption-right{right:6vw;max-width:36vw}}
+@media(prefers-reduced-motion:reduce){#intro3d .intro3d-type-word,#intro3d .intro3d-type-lines i{animation:none!important}}
+
+
+/* Responsive device previews: distinct desktop and mobile layouts, decorative only. */
+html.intro-active, body.intro-active{height:100%;overflow:hidden;overscroll-behavior:none;}
+body.intro-active{position:fixed;width:100%;inset:0;touch-action:none;}
+#intro3d{touch-action:none;overscroll-behavior:contain;}
+#intro3d .intro3d-devices{position:absolute;inset:0;z-index:1;pointer-events:none;perspective:1100px;overflow:hidden}
+#intro3d .intro3d-laptop{position:absolute;left:4.5vw;bottom:14%;width:clamp(230px,28vw,390px);opacity:.68;transform:rotateY(16deg) rotateX(5deg) rotateZ(-5deg);transform-style:preserve-3d;animation:device-float 8s ease-in-out infinite}
+#intro3d .laptop-screen{position:relative;padding:7px 7px 8px;border:1px solid #17171580;border-radius:9px 9px 4px 4px;background:linear-gradient(145deg,#34332f,#11110f);box-shadow:0 22px 45px #17171525;transform:translateZ(10px)}
+#intro3d .screen-bar{height:18px;display:flex;align-items:center;gap:4px;padding:0 5px;color:#e9e6df;font:6px 'DM Mono',monospace;letter-spacing:.04em}
+#intro3d .screen-bar i{width:4px;height:4px;border-radius:50%;background:#f04b2f}#intro3d .screen-bar span{margin-left:5px;opacity:.65}
+#intro3d .screen-layout{min-height:120px;background:#e9e6df;display:grid;grid-template-columns:.9fr 1.1fr;gap:7px;padding:10px;color:#171715}
+#intro3d .screen-code{display:flex;flex-direction:column;justify-content:center;gap:8px;font:6px 'DM Mono',monospace;color:#77766f;white-space:nowrap}
+#intro3d .screen-code b{font-size:7px;color:#171715;margin-bottom:5px}#intro3d .screen-code .code-accent{color:#f04b2f}
+#intro3d .screen-preview{border-left:1px solid #17171524;padding-left:8px;display:flex;flex-direction:column;justify-content:center;line-height:.95;letter-spacing:-.08em}
+#intro3d .screen-preview span{font-size:10px}#intro3d .screen-preview strong{font-size:clamp(20px,3vw,39px)}#intro3d .screen-preview em{font-size:15px;font-style:normal;color:#f04b2f}#intro3d .screen-preview small{margin-top:10px;font:5px 'DM Mono',monospace;letter-spacing:.04em}
+#intro3d .laptop-base{height:8px;margin:0 -5%;border-radius:0 0 45% 45%;background:linear-gradient(#aaa69e,#5e5b55 55%,#c5c0b6);box-shadow:0 8px 14px #17171520}
+#intro3d .intro3d-phone{position:absolute;right:7vw;bottom:15%;width:clamp(76px,8vw,112px);padding:5px;border:1px solid #171715a0;border-radius:18px;background:linear-gradient(140deg,#55534e,#151513 60%,#77736a);box-shadow:0 22px 45px #17171530;transform:rotateY(-16deg) rotateZ(7deg);animation:phone-float 6.5s ease-in-out infinite}
+#intro3d .phone-frame{position:relative;overflow:hidden;border-radius:13px;background:#e9e6df;min-height:180px;aspect-ratio:9/17}
+#intro3d .phone-notch{position:absolute;z-index:2;top:4px;left:50%;transform:translateX(-50%);width:31%;height:7px;border-radius:8px;background:#171715}
+#intro3d .phone-ui{height:100%;min-height:180px;padding:13px 7px 8px;display:flex;flex-direction:column;color:#171715}
+#intro3d .phone-status{display:flex;justify-content:space-between;font:5px 'DM Mono',monospace}
+#intro3d .phone-label{font:5px 'DM Mono',monospace;margin-top:12px;color:#77766f}
+#intro3d .phone-title{font-size:clamp(12px,1.8vw,20px);font-weight:700;letter-spacing:-.09em;line-height:.9;margin-top:14px}
+#intro3d .phone-title b{color:#f04b2f}#intro3d .phone-title span{color:#f04b2f;font-size:.7em}
+#intro3d .phone-rule{height:1px;background:#17171530;margin:12px 0 8px}
+#intro3d .phone-code{font:5px/1.7 'DM Mono',monospace;color:#77766f}#intro3d .phone-code span{color:#f04b2f}
+#intro3d .phone-pill{margin-top:auto;border:1px solid #171715;border-radius:12px;text-align:center;padding:5px 2px;font:5px 'DM Mono',monospace}
+#intro3d .phone-footer{font:4px 'DM Mono',monospace;color:#77766f;margin-top:8px;white-space:nowrap}
+@keyframes device-float{0%,100%{translate:0 0;rotate:0deg}50%{translate:0 -9px;rotate:-1deg}}
+@keyframes phone-float{0%,100%{translate:0 0;rotate:0deg}50%{translate:0 -12px;rotate:-2deg}}
+@media(max-width:700px){#intro3d .intro3d-laptop{display:none}#intro3d .intro3d-phone{right:3vw;bottom:18%;width:clamp(62px,18vw,86px);opacity:.55}#intro3d .phone-frame,#intro3d .phone-ui{min-height:145px}#intro3d .intro3d-center{z-index:3}#intro3d .intro3d-typefield{opacity:.72}#intro3d .intro3d-bottom{z-index:4}}
+@media(max-height:620px) and (min-width:701px){#intro3d .intro3d-laptop{bottom:8%;width:230px}#intro3d .intro3d-phone{bottom:8%;width:70px}#intro3d .intro3d-bottom{bottom:14px}}
+/* Desktop-only composition: laptop on the left, phone on the right, typography centered. */
+@media (min-width:701px){
+  #intro3d .intro3d-devices{overflow:hidden}
+  #intro3d .intro3d-laptop{display:block;left:clamp(28px,5vw,90px);bottom:clamp(70px,13vh,140px);width:clamp(250px,27vw,420px);opacity:.72}
+  #intro3d .intro3d-phone{display:block;right:clamp(35px,8vw,130px);bottom:clamp(65px,14vh,150px);width:clamp(82px,8vw,118px);opacity:.78}
+  #intro3d .intro3d-center{z-index:3;max-width:76vw}
+  #intro3d .intro3d-typefield{opacity:.86}
+}
+@media (min-width:1200px){
+  #intro3d .intro3d-laptop{left:8vw;width:clamp(340px,29vw,460px)}
+  #intro3d .intro3d-phone{right:10vw;width:clamp(100px,8vw,126px)}
+}
+@media(prefers-reduced-motion:reduce){#intro3d .intro3d-laptop,#intro3d .intro3d-phone{animation:none!important}}
+
+/* Final viewport fix: keep every layout inside the actual device screen. */
+html,body{width:100%;max-width:100%;overflow-x:clip}
+@supports not (overflow:clip){html,body{overflow-x:hidden}}
+#intro3d{width:100%;max-width:100%;height:100vh;height:100dvh}
+#intro3d .intro3d-canvas{width:100%;height:100%}
+.hero,.topbar,.section,.contact{max-width:100%;min-width:0}
+@media(max-width:700px){
+  .hero-title{font-size:clamp(54px,14.2vw,100px);max-width:100%;letter-spacing:-.11em}
+  .hero-title .line{max-width:100%}
+  .hero-title .outline{padding-left:2vw}
+  .hero-top,.hero-bottom{min-width:0;max-width:100%}
+  .intro{max-width:75vw;font-size:clamp(14px,3.7vw,18px)}
+  #intro3d .intro3d-center{width:90vw;max-width:90vw}
+  #intro3d .intro3d-brand{font-size:clamp(48px,14vw,88px);max-width:100%;letter-spacing:-.11em}
+  #intro3d .intro3d-type-stack{width:96vw;max-width:96vw}
+  #intro3d .intro3d-type-word{font-size:clamp(42px,14vw,88px)}
+}
+@media(min-width:701px){
+  .hero-title{font-size:clamp(76px,10.5vw,210px)}
+  #intro3d .intro3d-center{width:min(76vw,1100px)}
+}
+</style>
+</head>
+<body class="intro-active">
+
+<div id="intro3d" role="dialog" aria-modal="true" aria-label="Portfolio introduction">
+  <canvas class="intro3d-canvas" aria-hidden="true"></canvas>
+  <div class="intro3d-grid" aria-hidden="true"></div>
+  <div class="intro3d-typefield" aria-hidden="true">
+    <div class="intro3d-type-lines intro3d-lines-left"><i></i><i></i><i></i><i></i></div>
+    <div class="intro3d-type-stack">
+      <span class="intro3d-type-word word-one">DESIGN</span>
+      <span class="intro3d-type-word word-two">DEVELOP</span>
+      <span class="intro3d-type-word word-three">CREATE</span>
+      <span class="intro3d-type-word word-four">MATTER.</span>
+    </div>
+    <div class="intro3d-type-lines intro3d-lines-right"><i></i><i></i><i></i><i></i></div>
+    <div class="intro3d-type-caption intro3d-caption-left">FORM / FUNCTION / FEELING</div>
+    <div class="intro3d-type-caption intro3d-caption-right">INDEPENDENT DIGITAL CREATIVE</div>
+  </div>
+  <div class="intro3d-devices" aria-hidden="true">
+    <div class="intro3d-laptop">
+      <div class="device-camera"></div>
+      <div class="laptop-screen">
+        <div class="screen-bar"><i></i><i></i><i></i><span>subhan.design / portfolio</span></div>
+        <div class="screen-layout"><div class="screen-code"><b>01 / DESIGN</b><i>const idea = create();</i><i>build(idea, "with intent");</i><i class="code-accent">return experience;</i><i>/* digital, made personal */</i></div><div class="screen-preview"><span>MAKING</span><strong>DIGITAL</strong><em>MATTER. ↗</em><small>DESIGN · DEVELOP · CREATE</small></div></div>
+      </div><div class="laptop-base"></div>
+    </div>
+    <div class="intro3d-phone"><div class="phone-frame"><div class="phone-notch"></div><div class="phone-ui"><div class="phone-status"><span>9:41</span><span>● ● ▰</span></div><div class="phone-label">SUBHAN® / CREATIVE</div><div class="phone-title">MAKING<br><b>DIGITAL</b><br>MATTER<span>✳</span></div><div class="phone-rule"></div><div class="phone-code">&lt;design /&gt;<br><span>build</span>(ideas);</div><div class="phone-pill">EXPLORE ↗</div><div class="phone-footer">SCROLL TO DISCOVER ↓</div></div></div></div>
+  </div>
+  <div class="intro3d-top"><span>SUBHAN® / DIGITAL CREATIVE</span><span class="intro3d-live"><i></i> Independent · Worldwide</span></div>
+  <div class="intro3d-center">
+    <div class="intro3d-eyebrow">A considered digital experience</div>
+    <h1 class="intro3d-brand">SUBHAN<span>®</span></h1>
+    <p class="intro3d-subtitle">Design-minded. Detail-obsessed.<br>Always building.</p>
+    <button class="intro3d-enter" type="button">Enter experience</button>
+  </div>
+  <div class="intro3d-bottom"><span><span class="intro3d-index">01</span> — PERSONAL PORTFOLIO</span><span class="intro3d-hint">Move your cursor to explore ↗</span><span>PAKISTAN · WORLDWIDE</span></div>
+</div>
+
+<div class="noise"></div>
+<header class="topbar">
+  <a class="logo" href="#home">SUBHAN<span>®</span></a>
+  <div class="status mono"><i class="dot"></i> Available for select projects</div>
+  <div class="nav-right"><nav class="navlinks" aria-label="Main navigation"><a href="#home">Home</a><a href="#about">About</a><a href="#work">Work</a></nav><a class="menu-btn mono" href="#contact">LET'S TALK ↗</a></div>
+</header>
+<main>
+<section class="hero" id="home">
+  <div class="hero-top mono">
+    <div class="kicker">INDEPENDENT DIGITAL CREATIVE<br>PAKISTAN · WORKING WORLDWIDE</div>
+    <div class="hero-note">Design-minded.<br>Detail-obsessed.<br>Always building.</div>
+  </div>
+  <div class="orbit" aria-hidden="true"><div class="ring3d"></div><div class="ring3d two"></div><div class="orbit-core"></div><div class="orbital-ball"></div></div>
+  <h1 class="hero-title"><span class="line">MAKING</span><span class="line outline">DIGITAL<span class="asterisk">✳</span></span><span class="line">MATTER.</span></h1>
+  <div class="hero-bottom">
+    <p class="intro">I’m Subhan — I turn ideas into distinctive visuals, thoughtful websites, and digital experiences that leave a mark.</p>
+    <a class="scroll mono" href="#work"><span class="scroll-mark">↓</span> SCROLL TO EXPLORE</a>
+  </div>
+</section>
+<section class="section" id="work">
+  <div class="section-head reveal"><div class="section-label">01 / WHAT I DO</div><h2>Different skills.<br>One clear vision.</h2></div>
+  <div class="work-list reveal">
+    <a class="work-item" href="#contact"><span class="work-num">01</span><span class="work-name">Digital experiences <b class="arrow">↗</b></span><span class="work-type">Web design<br>& development</span></a>
+    <a class="work-item" href="#contact"><span class="work-num">02</span><span class="work-name">Visual identities <b class="arrow">↗</b></span><span class="work-type">Graphic design<br>& creative direction</span></a>
+    <a class="work-item" href="#contact"><span class="work-num">03</span><span class="work-name">Social presence <b class="arrow">↗</b></span><span class="work-type">Content & account<br>support</span></a>
+    <a class="work-item" href="#contact"><span class="work-num">04</span><span class="work-name">Digital safety <b class="arrow">↗</b></span><span class="work-type">Security-focused<br>digital support</span></a>
+  </div>
+  <p class="note reveal">A selection of services — project previews and case studies can be added here as your work grows.</p>
+</section>
+<section class="section" id="about">
+  <div class="section-head reveal"><div class="section-label">02 / A LITTLE ABOUT ME</div></div>
+  <div class="about-grid">
+    <div class="about-copy reveal">Good work lives where <em>design, technology,</em> and a little bit of curiosity meet.</div>
+    <div class="about-side reveal"><p>I’m Subhan, a digital creative from Pakistan working across graphic design, web experiences, and social media support. I care about the small details just as much as the big idea — from the first visual to the final interaction.</p><p>My goal is simple: make digital work feel considered, useful, and unmistakably yours.</p>
+      <div class="service-list">
+        <div class="service"><span>Graphic design</span><span>01</span></div>
+        <div class="service"><span>Web design & development</span><span>02</span></div>
+        <div class="service"><span>Social media support</span><span>03</span></div>
+        <div class="service"><span>Digital security support</span><span>04</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="marquee" aria-hidden="true"><div class="marquee-track">DESIGN WITH INTENT <span>✳</span> BUILD WITH PURPOSE <span>✳</span> MAKE IT MATTER <span>✳</span> DESIGN WITH INTENT <span>✳</span> BUILD WITH PURPOSE <span>✳</span> MAKE IT MATTER <span>✳</span>&nbsp;</div></div>
+<section class="section" id="approach">
+  <div class="section-head reveal"><div class="section-label">03 / THE APPROACH</div><h2>Thoughtful by<br>design.</h2></div>
+  <div class="about-grid">
+    <div class="about-copy reveal">Less noise. More <em>meaning.</em></div>
+    <div class="about-side reveal"><p>Every project starts with understanding what matters. Then I shape the direction, refine the details, and build an experience that works beautifully across screens.</p>
+      <div class="service-list">
+        <div class="service"><span>01 — Understand the idea</span><span>PLAN</span></div>
+        <div class="service"><span>02 — Shape the direction</span><span>DESIGN</span></div>
+        <div class="service"><span>03 — Build and refine</span><span>MAKE</span></div>
+        <div class="service"><span>04 — Polish the details</span><span>SHIP</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="contact" id="contact">
+  <div class="contact-top"><div class="section-label" style="color:#aaa9a1">04 / GET IN TOUCH</div><div class="mono" style="color:#aaa9a1">HAVE A GOOD ONE IN MIND?</div></div>
+  <h2>LET’S MAKE<br><span>IT HAPPEN.</span></h2>
+  <div class="contact-links">
+    <a class="contact-link" href="https://t.me/mythifier" target="_blank" rel="noreferrer">Telegram ↗</a>
+    <a class="contact-link" href="https://discord.com/users/" target="_blank" rel="noreferrer" onclick="event.preventDefault();alert('Find me on Discord: subhvn')">Discord: subhvn ↗</a>
+    <a class="contact-link" href="mailto:shubi@cyberservices.com">Email me ↗</a>
+    <a class="contact-link" href="#home">Back to top ↑</a>
+  </div>
+  <footer class="footer mono"><span>© <span id="year"></span> SUBHAN®</span><span>DESIGNED WITH INTENT</span><span>PAKISTAN · WORLDWIDE</span></footer>
+</section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(() => {
+  const intro = document.getElementById('intro3d');
+  if (!intro) return;
+  const canvas = intro.querySelector('.intro3d-canvas');
+  const enter = intro.querySelector('.intro3d-enter');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let renderer, scene, camera, frameId = 0, disposed = false;
+  let pointerX = 0, pointerY = 0, targetX = 0, targetY = 0;
+  let objects = [];
+  const closeIntro = () => {
+    if (intro.classList.contains('intro3d-leaving')) return;
+    intro.classList.add('intro3d-leaving');
+    intro.setAttribute('aria-hidden', 'true');
+    if (frameId) cancelAnimationFrame(frameId);
+    disposed = true;
+    window.setTimeout(() => {
+      intro.style.display = 'none';
+      if (renderer) { renderer.dispose(); renderer.forceContextLoss(); }
+      window.removeEventListener('pointermove', onPointer);
+      document.documentElement.classList.remove('intro-active');
+      document.body.classList.remove('intro-active');
+      document.documentElement.style.scrollBehavior = 'auto';
+      window.scrollTo(0, 0);
+      requestAnimationFrame(() => { document.documentElement.style.scrollBehavior = ''; });
+    }, 1050);
+  };
+  enter.addEventListener('click', closeIntro);
+  const blockIntroScroll = e => { if (!intro.classList.contains('intro3d-leaving')) e.preventDefault(); };
+  intro.addEventListener('wheel', blockIntroScroll, {passive:false});
+  intro.addEventListener('touchmove', blockIntroScroll, {passive:false});
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !intro.classList.contains('intro3d-leaving')) closeIntro(); });
+  const onPointer = e => {
+    if (e.pointerType === 'touch') return;
+    targetX = (e.clientX / window.innerWidth - .5) * 2;
+    targetY = (e.clientY / window.innerHeight - .5) * 2;
+  };
+  window.addEventListener('pointermove', onPointer, {passive:true});
+  if (!window.THREE || !canvas.getContext) {
+    intro.classList.add('intro3d-fallback');
+    return;
+  }
+  try {
+    renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias: window.devicePixelRatio < 2, powerPreference:'low-power'});
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+    renderer.setSize(window.innerWidth, window.innerHeight, false);
+    renderer.outputEncoding = THREE.sRGBEncoding;
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(42, window.innerWidth/window.innerHeight, .1, 100);
+    camera.position.set(0, 0, 10);
+    const ambient = new THREE.AmbientLight(0xffffff, 1.05); scene.add(ambient);
+    const key = new THREE.PointLight(0xf04b2f, 2.2, 22); key.position.set(3, 2.5, 4); scene.add(key);
+    const fill = new THREE.PointLight(0xffffff, 1.8, 25); fill.position.set(-4, -2, 3); scene.add(fill);
+    const ink = new THREE.MeshStandardMaterial({color:0x171715, metalness:.65, roughness:.27});
+    const accent = new THREE.MeshStandardMaterial({color:0xf04b2f, metalness:.55, roughness:.22, emissive:0x2c0802, emissiveIntensity:.18});
+    const pale = new THREE.MeshStandardMaterial({color:0xd6d1c7, metalness:.7, roughness:.25});
+    const add = (geometry, material, x,y,z, scale=1, spin=1) => {
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.position.set(x,y,z); mesh.scale.setScalar(scale);
+      mesh.userData.spin = spin; mesh.userData.baseY = y; mesh.userData.phase = Math.random()*6.28;
+      scene.add(mesh); objects.push(mesh); return mesh;
+    };
+    // Real 3D geometry: metallic rings, a sculptural knot, and floating forms.
+    const ring = add(new THREE.TorusGeometry(2.35,.018,8,120), ink, 2.25,.15,-1,1, .12);
+    ring.rotation.set(.85,.15,-.3);
+    const ring2 = add(new THREE.TorusGeometry(2.8,.012,8,120), accent, 2.25,.15,-1.1,1, -.09);
+    ring2.rotation.set(.45,.6,.55);
+    const knot = add(new THREE.TorusKnotGeometry(.56,.17,100,12,2,3), accent, -3.15,1.15,-.3,1.0,.3);
+    knot.rotation.set(.3,.4,.1);
+    const sphere = add(new THREE.SphereGeometry(.62,40,28), pale, 3.15,-1.15,.2,1,.15);
+    const sphereMat = new THREE.MeshStandardMaterial({color:0xf04b2f, metalness:.3, roughness:.2});
+    add(new THREE.IcosahedronGeometry(.36,1), ink, -3.25,-1.35,-.4,1,.24);
+    add(new THREE.OctahedronGeometry(.24,0), accent, 1.05,2.1,.1,1,.35);
+    add(new THREE.DodecahedronGeometry(.22,0), pale, -1.4,-2.15,.3,1,-.2);
+    // Small, restrained particle field.
+    const count = window.innerWidth < 700 ? 240 : 420;
+    const positions = new Float32Array(count*3);
+    for(let i=0;i<count;i++){
+      positions[i*3]=(Math.random()-.5)*15;
+      positions[i*3+1]=(Math.random()-.5)*9;
+      positions[i*3+2]=(Math.random()-.5)*7-1.5;
+    }
+    const particleGeometry = new THREE.BufferGeometry();
+    particleGeometry.setAttribute('position',new THREE.BufferAttribute(positions,3));
+    const particles = new THREE.Points(particleGeometry,new THREE.PointsMaterial({color:0x77766f,size:.018,transparent:true,opacity:.62,sizeAttenuation:true}));
+    scene.add(particles);
+    const clock = new THREE.Clock();
+    const animate = () => {
+      if(disposed || !renderer) return;
+      frameId = requestAnimationFrame(animate);
+      const t = clock.getElapsedTime();
+      if (!reduced) {
+        pointerX += (targetX-pointerX)*.025; pointerY += (targetY-pointerY)*.025;
+        camera.position.x = pointerX*.32;
+        camera.position.y = -pointerY*.22;
+        camera.lookAt(0,0,0);
+        objects.forEach(o => {
+          o.rotation.y += o.userData.spin*.002;
+          o.rotation.x += o.userData.spin*.0008;
+          o.position.y = o.userData.baseY + Math.sin(t*.55+o.userData.phase)*.09;
+        });
+        particles.rotation.y = t*.012;
+        particles.rotation.x = Math.sin(t*.1)*.025;
+      } else { camera.lookAt(0,0,0); }
+      renderer.render(scene,camera);
+    };
+    if (!reduced) animate();
+    else renderer.render(scene,camera);
+    const resize = () => {
+      if (!renderer || disposed) return;
+      camera.aspect=window.innerWidth/window.innerHeight; camera.updateProjectionMatrix();
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.5));
+      renderer.setSize(window.innerWidth,window.innerHeight,false);
+      if(reduced) renderer.render(scene,camera);
+    };
+    window.addEventListener('resize',resize,{passive:true});
+    enter.addEventListener('click',()=>window.removeEventListener('resize',resize),{once:true});
+  } catch (err) {
+    // Keep the intro usable even if WebGL setup fails.
+    canvas.style.display='none';
+  }
+})();
+</script>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => { if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);} });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+const tiltItems = document.querySelectorAll('.service,.project');
+tiltItems.forEach(card => {
+  card.addEventListener('pointermove', e => {
+    if (e.pointerType === 'touch') return;
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX-r.left)/r.width-.5;
+    const y = (e.clientY-r.top)/r.height-.5;
+    card.style.transform = `perspective(900px) rotateX(${-y*5}deg) rotateY(${x*6}deg) translateY(-3px)`;
+  });
+  card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+});
+const hero = document.querySelector('.hero');
+const orbit = document.querySelector('.orbit');
+hero.addEventListener('pointermove', e => {
+  if (e.pointerType === 'touch') return;
+  const r = hero.getBoundingClientRect();
+  const x = (e.clientX-r.left)/r.width-.5;
+  const y = (e.clientY-r.top)/r.height-.5;
+  orbit.style.marginLeft = `${x*12}px`;
+  orbit.style.marginTop = `${y*12}px`;
+});
+hero.addEventListener('pointerleave', () => { orbit.style.marginLeft=''; orbit.style.marginTop=''; });
+</script>
+</body>
+</html>
